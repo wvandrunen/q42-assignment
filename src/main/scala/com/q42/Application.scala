@@ -13,7 +13,7 @@ object Application {
     println("=======================")
 
     println("Numbers used    : " + numbers)
-    println("Operators used  : " + operators);
+    println("Operators used  : " + operators)
 
     val calculator = new SolutionCalculator(new ReversedPolishNotatedFormula, new SolutionGenerator(numbers, operators))
     val solutions = calculator.calculateSolutions()

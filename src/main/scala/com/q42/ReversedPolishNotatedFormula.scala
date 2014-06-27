@@ -51,7 +51,7 @@ class ReversedPolishNotatedFormula {
     if(!firstItem.forall(_.isDigit)) false
 
     // second rule -> the rest should be pairs of digits and supported operators so let slice in part of twos
-    slides.forall( { case List(x, y) => { x.forall(_.isDigit) && supportedOperators.contains(y) } } )
+    slides.forall( { case List(x, y) => x.forall(_.isDigit) && supportedOperators.contains(y)} )
   }
 
 }

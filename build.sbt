@@ -1,4 +1,4 @@
-name := "q42-assigment"
+name := "q42-assignment"
 
 version := "1.0"
 

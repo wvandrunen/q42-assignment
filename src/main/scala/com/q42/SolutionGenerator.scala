@@ -6,7 +6,7 @@ package com.q42
  * The list of possible calculations are in Reverse Polish Notation (http://en.wikipedia.org/wiki/Reverse_Polish_notation).
  * The Reversed Polish Notation is used to make the execution of the calculation more easy.
  *
- * Only the following operators are supported: + / - and *. If any unsupported operator is used, an exeception is thrown
+ * Only the following operators are supported: + / - and *. If any unsupported operator is used, an exception is thrown
  *
  * Example:
  *

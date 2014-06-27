@@ -16,7 +16,7 @@ class ReversedPolishNotatedFormulaTest extends FunSuite {
     assert(formulaCalculator.validateAndCalculate(formula) === 0)
   }
 
-  test("(2, 6, *, 16, *, 32, /) should become 5") {
+  test("(2, 5, *, 16, *, 32, /) should become 5") {
     val formula = List("2", "5", "*", "16", "*", "32", "/")
 
     assert(formulaCalculator.validateAndCalculate(formula) === 5)
