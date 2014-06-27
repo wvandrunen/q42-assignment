@@ -6,6 +6,8 @@ package com.q42
  * The list of possible calculations are in Reverse Polish Notation (http://en.wikipedia.org/wiki/Reverse_Polish_notation).
  * The Reversed Polish Notation is used to make the execution of the calculation more easy.
  *
+ * Only the following operators are supported: + / - and *. If any unsupported operator is used, an exeception is thrown
+ *
  * Example:
  *
  * Input
@@ -30,6 +32,11 @@ package com.q42
  * (0, 1, /, 2, /)
  */
 class SolutionGenerator(numbers: List[Int], operators: List[String]) {
+
+  val supportedOperators = List("*", "+", "-", "/")
+
+  if(!operators.forall(x => supportedOperators.contains(x)))
+    throw new IllegalArgumentException("Unsupported operator(s) found! " + operators.filterNot(x => supportedOperators.contains(x)))
 
   def generateAllSolutions(): List[List[String]] = {
     generateNumberCombinations().flatMap(x => buildPossibleCalculationsInPolishNotation(x, List()))
@@ -79,10 +86,22 @@ class SolutionGenerator(numbers: List[Int], operators: List[String]) {
    *
    * @return a list of possible combinations
    */
-  def generateNumberCombinations(): List[List[Int]] = {
-    val combinations = for (n1 <- numbers; n2 <- numbers; n3 <- numbers; n4 <- numbers; n5 <- numbers) yield List(n1, n2, n3, n4, n5)
+  private def generateNumberCombinations(): List[List[Int]] = {
 
-    combinations.filter(x => x.distinct.length == x.length)
+    def addNumbers(timesRemaining: Int, acc: List[List[Int]]): List[List[Int]] = {
+      timesRemaining match {
+        case 0 => acc
+        case _ =>
+          acc match {
+            case List() => addNumbers(timesRemaining - 1, numbers.map(x => List(x)))
+            case _ => addNumbers(timesRemaining -1, acc.map(x => for (n <- numbers) yield { x ++ List(n) }).flatten)
+          }
+      }
+    }
+
+    val result = addNumbers(numbers.length, List())
+
+    result.filter(x => x.distinct.length == x.length)
   }
 
 }

@@ -1,7 +1,9 @@
 package com.q42
 
 class ReversedPolishNotatedFormula {
-  
+
+  val supportedOperators = List("*", "+", "-", "/")
+
   /***
     * Executes the calculation of a given List which contains a calculation in Reverse Polish Notation
     *
@@ -12,11 +14,15 @@ class ReversedPolishNotatedFormula {
     * @param calculationInPolishNotation the calculation
     * @return the result of the calculation
     */
-  def calculate(calculationInPolishNotation: List[String]) : Int = {
 
-    if(!valid(calculationInPolishNotation)) {
-      0
+  def validateAndCalculate(calculationInPolishNotation: List[String]) : Int = {
+    valid(calculationInPolishNotation) match {
+      case true  => calculate(calculationInPolishNotation)
+      case false => throw new IllegalArgumentException
     }
+  }
+
+  private def calculate(calculationInPolishNotation: List[String]) : Int = {
 
     val firstDigit: String = calculationInPolishNotation(0)
     val secondDigit: String = calculationInPolishNotation(1)
@@ -37,20 +43,15 @@ class ReversedPolishNotatedFormula {
   }
 
   def valid(calculation: List[String]): Boolean = {
-
-
     val firstItem = calculation(0)
+    val rest = calculation.drop(1)
+    val slides = rest.sliding(2, 2)
 
     // first rule -> first digit should be a digit
     if(!firstItem.forall(_.isDigit)) false
 
-    val rest = calculation.drop(1)
-
-    val slides = rest.sliding(2)
-
-    slides.foreach(println)
-
-    true
+    // second rule -> the rest should be pairs of digits and supported operators so let slice in part of twos
+    slides.forall( { case List(x, y) => { x.forall(_.isDigit) && supportedOperators.contains(y) } } )
   }
 
 }
