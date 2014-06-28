@@ -29,5 +29,13 @@ class ReversedPolishNotatedFormulaTest extends FunSuite {
       formulaCalculator.validateAndCalculate(formula)
     }
   }
+
+  test("(*, 6, *, 16, *, 32, /) is invalid and exception should be thrown") {
+    val formula = List("*", "6", "*", "16", "*", "32", "/")
+
+    intercept[IllegalArgumentException] {
+      formulaCalculator.validateAndCalculate(formula)
+    }
+  }
 }
 

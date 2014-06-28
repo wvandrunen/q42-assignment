@@ -14,3 +14,7 @@ libraryDependencies +=
   "org.scalamock" %% "scalamock-scalatest-support" % "3.0.1" % "test"
 
 org.scalastyle.sbt.ScalastylePlugin.Settings
+
+
+
+seq(ScctPlugin.instrumentSettings : _*)

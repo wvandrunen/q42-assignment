@@ -13,3 +13,7 @@ Starten van applicatie:
 
 Draaien van testsuite:
 > sbt test
+
+Coverage rapportage genereren:
+> sbt clean scct:test
+> Rapportage is dan terug te vinden in: target/scala-2.10/coverage-report/index.html
