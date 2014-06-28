@@ -40,10 +40,13 @@ class SolutionGenerator(numbers: List[Int], operators: List[String]) {
    *
    * @return am instance with default values
    */
+  // scalastyle:off magic.number
   def this() = this(List(2,4,8,16,32),  List("*", "+", "-", "/"))
+  // scalastyle:on magic.number
 
-  if(!operators.forall(x => supportedOperators.contains(x)))
+  if(!operators.forall(x => supportedOperators.contains(x))) {
     throw new IllegalArgumentException("Unsupported operator(s) found! " + operators.filterNot(x => supportedOperators.contains(x)))
+  }
 
   def generateAllSolutions(): List[List[String]] = {
     generateNumberCombinations().flatMap(x => buildPossibleCalculationsInPolishNotation(x, List()))

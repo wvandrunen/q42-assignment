@@ -12,3 +12,5 @@ libraryDependencies += "junit" % "junit" % "4.10" % "test"
 
 libraryDependencies +=
   "org.scalamock" %% "scalamock-scalatest-support" % "3.0.1" % "test"
+
+org.scalastyle.sbt.ScalastylePlugin.Settings
