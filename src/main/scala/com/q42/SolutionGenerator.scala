@@ -35,6 +35,13 @@ class SolutionGenerator(numbers: List[Int], operators: List[String]) {
 
   val supportedOperators = List("*", "+", "-", "/")
 
+  /**
+   * Default constructor needed from Scala Mock (this framework doesn't cope with constructors very well
+   *
+   * @return am instance with default values
+   */
+  def this() = this(List(2,4,8,16,32),  List("*", "+", "-", "/"))
+
   if(!operators.forall(x => supportedOperators.contains(x)))
     throw new IllegalArgumentException("Unsupported operator(s) found! " + operators.filterNot(x => supportedOperators.contains(x)))
 

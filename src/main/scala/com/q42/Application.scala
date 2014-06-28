@@ -4,18 +4,17 @@ object Application {
 
   def main(args: Array[String]): Unit = {
 
-    val numbers: List[Int] = List[Int](2, 4, 8, 16, 32)
-    val operators = List[String]("-", "*", "+", "/")
+    val solutionGeneratorFactory = SolutionGeneratorFactory
 
     println()
     println("=======================")
     println("Starting Q42 Assignment")
     println("=======================")
 
-    println("Numbers used    : " + numbers)
-    println("Operators used  : " + operators)
+    println("Numbers used    : " + solutionGeneratorFactory.numbers)
+    println("Operators used  : " + solutionGeneratorFactory.operators)
 
-    val calculator = new SolutionCalculator(new ReversedPolishNotatedFormula, new SolutionGenerator(numbers, operators))
+    val calculator = new SolutionCalculator(new ReversedPolishNotatedFormula, solutionGeneratorFactory.create)
     val solutions = calculator.calculateSolutions()
 
     println("Solutions found : " + solutions.size)
